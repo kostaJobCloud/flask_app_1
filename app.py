@@ -1,4 +1,4 @@
-
+import logging
 
 from flask import Flask, request, Blueprint
 from sqlalchemy import create_engine
@@ -7,6 +7,8 @@ from sqlalchemy.orm import sessionmaker
 from models import Base
 from decorators import error_handler
 
+logging.basicConfig(level=logging.INFO)
+logging.info('Application has started.')
 
 engine = create_engine('postgresql://kosta:kosta@localhost:5432/my_db', echo=True)
 Base.metadata.create_all(bind=engine)
@@ -48,3 +50,4 @@ def delete_users():
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+    logging.info('Application stops working.')
