@@ -49,22 +49,6 @@ def update_user(id):
     session.close()
     return response
 
-@app.route('/user/<id>', methods=['GET'])
-@error_handler
-def get_user(id):
-    from db_actions import DBUtils
-    response = DBUtils.get_user(id)
-    session.close()
-    return response
-
-@app.route('/user/<id>/delete', methods=['DELETE'])
-@error_handler
-def delete_user(id):
-    from db_actions import DBUtils
-    response = DBUtils.delete_user(id)
-    session.close()
-    return response
-
 
 @app.route('/users/delete', methods=['DELETE'])
 @error_handler
