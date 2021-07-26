@@ -1,5 +1,4 @@
 
-import logging
 from flask import jsonify
 
 from app import session
@@ -10,16 +9,13 @@ class DBUtils(object):
 
     @staticmethod
     def add_new_user(data):
-        logging.info('Adding user has started...')
         new_user = User(first_name=data['first_name'], last_name=data['last_name'], age=data['age'], email=data['email'])
         session.add(new_user)
         session.commit()
-        logging.info(f'User {new_user.first_name} {new_user.last_name} has been successfully added to the database.')
-        return jsonify({"Message": f"User: {new_user.first_name} {new_user.last_name} has been successfully added"})
+        return jsonify({"message": f"User: {new_user.first_name} {new_user.last_name} has been successfully added"})
 
     @staticmethod
     def list_all_users():
-        logging.info('Listing all users.')
         users = [
                 {
                     "first_name": user.first_name,
@@ -32,9 +28,7 @@ class DBUtils(object):
 
     @staticmethod
     def delete_all_users():
-        logging.info('Deleting users process has started.')
         session.query(User).delete()
         session.commit()
-        logging.info('All users have deleted.')
         return jsonify({"Message": "All users from the table have been deleted"})
 
