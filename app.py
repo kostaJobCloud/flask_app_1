@@ -40,16 +40,6 @@ def add_user():
     return response
 
 
-@app.route('/user/<id>', methods=['PUT'])
-@error_handler
-def update_user(id):
-    from db_actions import DBUtils
-    data = request.get_json()
-    response = DBUtils.update_user(data, id)
-    session.close()
-    return response
-
-
 @app.route('/users/delete', methods=['DELETE'])
 @error_handler
 def delete_users():

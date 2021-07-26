@@ -38,16 +38,3 @@ class DBUtils(object):
         logging.info('All users have deleted.')
         return jsonify({"Message": "All users from the table have been deleted"})
 
-    @staticmethod
-    def update_user(data, user_id):
-        logging.info('Updating user has started.')
-        user = session.query(User).get(user_id)
-        user.first_name = data['first_name']
-        user.last_name = data['last_name']
-        user.email = data['email']
-        user.age = data['age']
-        session.commit()
-        logging.info(f'User {user.first_name} {user.last_name} has successfully updated.')
-        return jsonify({'Message': f'User {user.first_name} {user.last_name} has successfully updated.'})
-
-
